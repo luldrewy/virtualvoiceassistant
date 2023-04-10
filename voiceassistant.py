@@ -26,15 +26,15 @@ def getaudio():
         audio = r.listen(source) #check for audio
         said = ""
         try:
-            said = r.recognize_google(audio) 
+            said = r.recognize_google(audio) #get the dialogue through the speech recognizer using Google's API
             print(said)
         except Exception as e:
-            print("Exception as ", str(e))
+            print("Exception as ", str(e)) 
     return said
 
 def speakAssignment():
-    with open("missingAssignments.txt", "r", buffering= 20000000) as f:
-        for line in f:
+    with open("missingAssignments.txt", "r", buffering= 20000000) as f: #open the list of missing assignments in small chunks
+        for line in f:    #speak one line at a time
             speak(line)
 
 WAKE = "hey andrew" 
@@ -47,8 +47,8 @@ while True:
         text = getaudio().lower()
         
         #list of possible commands for the voice assistant
-        POEM_STR = ["let me hear a poem", "i want to hear your poem", "do you have a poem", "your poem"] 
-        WEATHER_STR = ["what is the weather", "weather"]
+        POEM_STR = ["poem", "let me hear a poem", "do you have a poem"] 
+        WEATHER_STR = ["weather", "what is the weather"]
         HOMEWORK_STR = ["homework"]
 
         #checks to see if any of these commands are used
